@@ -191,15 +191,9 @@ function buildGame(){
           <b>לחצו כדי להפוך</b>
         </div>
 
-        <div class="face back">
-          <img src="${c.image}" onclick="openModal(event,'${c.image}')">
-
-          <div class="text">
-            ${c.text}
-          </div>
-        </div>
-
-      </div>
+       <div class="face back">
+  <img src="${c.image}" onclick="openModal(event,'${c.image}')">
+</div>
     `;
 
     card.addEventListener("click", () => toggleCard(card));

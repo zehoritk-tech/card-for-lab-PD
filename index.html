@@ -70,7 +70,7 @@ h2{
 }
 
 .back{
-  background:white;
+  background:linear-gradient(135deg, #fff3e0, #ffe0b2);
   transform: rotateY(180deg);
   flex-direction:column;
 }
@@ -204,12 +204,10 @@ function buildGame(){
 
 function toggleCard(card){
 
-  // אם יש כבר קלף פתוח אחר
   if(openCard && openCard !== card){
     return;
   }
 
-  // אם הקלף פתוח → סוגרים ומאפירים
   if(card.classList.contains("flipped")){
 
     card.classList.remove("flipped");
@@ -219,7 +217,6 @@ function toggleCard(card){
     openCard = null;
   }
 
-  // אחרת פותחים אותו
   else{
 
     card.classList.add("flipped");

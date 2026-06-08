@@ -70,8 +70,7 @@ h2{
 }
 
 .back{
-  /* שינוי רק כאן */
-  background:linear-gradient(135deg, #fff8e1, #ffd8a8);
+  background:white;
   transform: rotateY(180deg);
   flex-direction:column;
 }
@@ -158,7 +157,7 @@ const cards = [
   },
   {
     image: "https://raw.githubusercontent.com/zehoritk-tech/card-for-lab-PD/main/images/PD%20turning%20point.png",
-  }
+   }
 ];
 
 let openCard = null;
@@ -170,8 +169,11 @@ function buildGame(){
 
   let order = [...cards.keys()];
 
+  // ערבוב קלפים
   for(let i = order.length - 1; i > 0; i--){
+
     let j = Math.floor(Math.random() * (i + 1));
+
     [order[i], order[j]] = [order[j], order[i]];
   }
 
@@ -189,11 +191,9 @@ function buildGame(){
           <b>לחצו כדי להפוך</b>
         </div>
 
-        <div class="face back">
-          <img src="${c.image}" onclick="openModal(event,'${c.image}')">
-        </div>
-
-      </div>
+       <div class="face back">
+  <img src="${c.image}" onclick="openModal(event,'${c.image}')">
+</div>
     `;
 
     card.addEventListener("click", () => toggleCard(card));
@@ -204,19 +204,26 @@ function buildGame(){
 
 function toggleCard(card){
 
+  // אם יש כבר קלף פתוח אחר
   if(openCard && openCard !== card){
     return;
   }
 
+  // אם הקלף פתוח → סוגרים ומאפירים
   if(card.classList.contains("flipped")){
 
     card.classList.remove("flipped");
-    card.classList.add("used");
-    openCard = null;
 
-  } else {
+    card.classList.add("used");
+
+    openCard = null;
+  }
+
+  // אחרת פותחים אותו
+  else{
 
     card.classList.add("flipped");
+
     openCard = card;
   }
 }
@@ -224,11 +231,14 @@ function toggleCard(card){
 function openModal(event, src){
 
   event.stopPropagation();
+
   document.getElementById("modal").style.display = "flex";
+
   document.getElementById("modalImg").src = src;
 }
 
 function closeModal(){
+
   document.getElementById("modal").style.display = "none";
 }
 
